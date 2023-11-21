@@ -7,4 +7,10 @@ This is example code for an automation testing project of booker API using postm
 - Sample Test cases for Testing reports.
 - Sample Test cases for testing Mobile apps.
 - General Test Cases for Login functionality.
+## Tools
+- postman
+- newman
+  - instal newman (npm install -g newman)
+  - instal reporter (npm install -g newman-reporter-htmlextra)
+  - run (newman run coll.json -e env.json -r htmlextra)
 
