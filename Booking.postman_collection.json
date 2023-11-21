@@ -1,0 +1,199 @@
+{
+	"info": {
+		"_postman_id": "92383496-7585-4e3e-a552-11b1bdb04341",
+		"name": "Booking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27229394"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Create Token with valid data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Verify response is json formate\",function(){\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.be.contains(\"application/json\")\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify Token is recived\",function(){\r",
+									"    pm.environment.set(\"Token\",pm.response.json().token);\r",
+									"    pm.expect(pm.environment.get(\"Token\")).to.be.not.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response status code should be 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"{{Username}}\",\r\n    \"password\" : \"{{Password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth"
+							]
+						},
+						"description": "\nThis endpoint is used to authenticate the user and obtain a token for accessing protected resources. The HTTP POST request is sent to `{{URL}}/auth`.\n\n### Request Parameters\nThis endpoint does not require any request parameters.\n\n### Response\nThe response from the last execution of this endpoint had a status code of 200. The response body included a JSON object with a `token` property. The value of the `token` property was an empty string.\n\nPlease note that the actual token value may vary in different executions.\n\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Token with invalid data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Authentication with invalid data\",function(){\r",
+									"    pm.expect(pm.response.json().reason).to.be.equal(\"Bad credentials\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"{{InvalidUsername}}\",\r\n    \"password\":\"{{InvalidPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Booking",
+			"item": []
+		},
+		{
+			"name": "Performance Testing",
+			"item": [
+				{
+					"name": "Authentication",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Authentication response time is accepted\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(300)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"{{Username}}\",\r\n    \"password\":\"{{Password}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This collection is responsible for testing the response time of each API module"
+		},
+		{
+			"name": "Security Testing",
+			"item": [
+				{
+					"name": "Authentication",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Verify Authentication response size\", function () {\r",
+									"    pm.expect(parseInt(pm.response.headers.get(\"Content-Length\"))).to.be.equal(27)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"{{Username}}\",\r\n    \"password\":\"{{Password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This collection is responsible for check response size of the requests to check if there is any injection attacks"
+		}
+	]
+}
