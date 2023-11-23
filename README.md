@@ -11,6 +11,6 @@ all testcases are written and documented using excel sheet you can access them f
 - newman
   - Install Newman globally ```npm install -g newman```
   - Install the Newman HTML Extra reporter ```npm install -g newman-reporter-htmlextra```
-  - RUN ```newman run coll.json -e env.json -r htmlextra```
+  - RUN ```newman run Booking.postman_collection.json -e Beta.postman_environment.json -r htmlextra```
 - Chai Library: for Assertion.
 ![Postman logo](https://assets.getpostman.com/common-share/postman-github-logo.png "Postman logo")
