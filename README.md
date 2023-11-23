@@ -1,6 +1,10 @@
 ## Don't forget to give a :star:
 This is example code for an automation testing project of booker API using postman
 all testcases are written and documented using excel sheet you can access them from this link [Manual TestCases](https://github.com/Bad-ri/Postman_RESTful-Booker_API-Testing/blob/Readme/TestCases.xlsx)
+
+![ezgif com-video-to-gif](https://github.com/Bad-ri/Postman_RESTful-Booker_API-Testing/assets/74131474/d64839e8-fb41-4446-b034-245482650dba)
+
+
 ## Test cases
 - Verify API Response Status Code.
 - Verify That the Response is in JSON format.
